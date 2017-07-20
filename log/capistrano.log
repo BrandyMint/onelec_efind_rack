@@ -1,0 +1,106 @@
+# Logfile created on 2017-07-20 10:41:08 +0000 by logger.rb/56438
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 10:41:08 +0000 cap production deploy:setup
+  INFO ---------------------------------------------------------------------------
+ DEBUG [f4088318] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as deploy@onelec.ru
+ DEBUG [f4088318] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 10:42:01 +0000 cap production deploy:setup
+  INFO ---------------------------------------------------------------------------
+ DEBUG [10002b96] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [10002b96] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [10002b96] Finished in 2.357 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 10:42:46 +0000 cap production install
+  INFO ---------------------------------------------------------------------------
+ DEBUG [809a3a00] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [809a3a00] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [809a3a00] Finished in 0.928 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 10:43:32 +0000 cap production deploy:check
+  INFO ---------------------------------------------------------------------------
+ DEBUG [cb750280] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [cb750280] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [cb750280] Finished in 0.930 seconds with exit status 0 (successful).
+  INFO [6885a402] Running /usr/bin/env mkdir -p /tmp as wwwonelec@onelec.ru
+ DEBUG [6885a402] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.3" ; /usr/bin/env mkdir -p /tmp )
+  INFO [6885a402] Finished in 0.139 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-onelec_efind_rack-production-vagrant.sh 0.0%
+  INFO Uploading /tmp/git-ssh-onelec_efind_rack-production-vagrant.sh 100.0%
+  INFO [fd57dce6] Running /usr/bin/env chmod 700 /tmp/git-ssh-onelec_efind_rack-production-vagrant.sh as wwwonelec@onelec.ru
+ DEBUG [fd57dce6] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.3" ; /usr/bin/env chmod 700 /tmp/git-ssh-onelec_efind_rack-production-vagrant.sh )
+  INFO [fd57dce6] Finished in 0.139 seconds with exit status 0 (successful).
+  INFO [83b7aaeb] Running /usr/bin/env git ls-remote git@github.com:BrandyMint/onelec_efind_rack.git HEAD as wwwonelec@onelec.ru
+ DEBUG [83b7aaeb] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.3" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-onelec_efind_rack-production-vagrant.sh" ; /usr/bin/env git ls-remote git@github.com:BrandyMint/onelec_efind_rack.git HEAD )
+ DEBUG [83b7aaeb] 	ef791e76c1dd9f088e08fe77a9317441328c5132	HEAD
+  INFO [83b7aaeb] Finished in 2.056 seconds with exit status 0 (successful).
+  INFO [11944cfb] Running /usr/bin/env mkdir -p /home/wwwonelec/onelec_efind_rack/shared /home/wwwonelec/onelec_efind_rack/releases as wwwonelec@onelec.ru
+ DEBUG [11944cfb] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.3" ; /usr/bin/env mkdir -p /home/wwwonelec/onelec_efind_rack/shared /home/wwwonelec/onelec_efind_rack/releases )
+  INFO [11944cfb] Finished in 0.139 seconds with exit status 0 (successful).
+  INFO [93a770de] Running /usr/bin/env mkdir -p /home/wwwonelec/onelec_efind_rack/shared/log /home/wwwonelec/onelec_efind_rack/shared/tmp/pids /home/wwwonelec/onelec_efind_rack/shared/tmp/cache /home/wwwonelec/onelec_efind_rack/shared/tmp/sockets as wwwonelec@onelec.ru
+ DEBUG [93a770de] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.3" ; /usr/bin/env mkdir -p /home/wwwonelec/onelec_efind_rack/shared/log /home/wwwonelec/onelec_efind_rack/shared/tmp/pids /home/wwwonelec/onelec_efind_rack/shared/tmp/cache /home/wwwonelec/onelec_efind_rack/shared/tmp/sockets )
+  INFO [93a770de] Finished in 0.140 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 10:46:32 +0000 cap production puma:config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [9334b7a9] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [9334b7a9] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [9334b7a9] Finished in 0.952 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 10:47:27 +0000 cap production puma:config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [3383ee2c] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [3383ee2c] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [3383ee2c] Finished in 0.947 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 10:47:34 +0000 cap production puma:config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [f607e907] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [f607e907] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [f607e907] Finished in 0.925 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 10:58:57 +0000 cap production puma:config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [2fc17e3e] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [2fc17e3e] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [2fc17e3e] Finished in 1.019 seconds with exit status 0 (successful).
+ DEBUG Uploading /home/wwwonelec/onelec_efind_rack/shared/puma.rb 0.0%
+  INFO Uploading /home/wwwonelec/onelec_efind_rack/shared/puma.rb 100.0%
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 11:02:13 +0000 cap production puma:nginx_config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [7806dfaf] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [7806dfaf] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [7806dfaf] Finished in 0.989 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 11:02:25 +0000 cap production puma:nginx_config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [0ca2bd62] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [0ca2bd62] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [0ca2bd62] Finished in 0.928 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 11:02:41 +0000 cap production puma:nginx_config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [ff9f34c8] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [ff9f34c8] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [ff9f34c8] Finished in 0.941 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 11:05:54 +0000 cap production puma:nginx_config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [81afffaa] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [81afffaa] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [81afffaa] Finished in 0.963 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 11:06:06 +0000 cap production puma:config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [da2620e2] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [da2620e2] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [da2620e2] Finished in 0.925 seconds with exit status 0 (successful).
+ DEBUG Uploading /home/wwwonelec/onelec_efind_rack/shared/puma.rb 0.0%
+  INFO Uploading /home/wwwonelec/onelec_efind_rack/shared/puma.rb 100.0%
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-07-20 11:06:52 +0000 cap production puma:nginx_config
+  INFO ---------------------------------------------------------------------------
+ DEBUG [3bff80a7] Running [ -d $HOME/.rbenv/versions/2.3.3 ] as wwwonelec@onelec.ru
+ DEBUG [3bff80a7] Command: [ -d $HOME/.rbenv/versions/2.3.3 ]
+ DEBUG [3bff80a7] Finished in 0.926 seconds with exit status 0 (successful).
