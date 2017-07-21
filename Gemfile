@@ -5,7 +5,7 @@ gem 'rack'
 gem 'puma'
 gem 'pg'
 gem 'pry'
-
+gem 'activerecord'
 
 group :deploy do
   gem 'capistrano', '~> 3.2', :require => false

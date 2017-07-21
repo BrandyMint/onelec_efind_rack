@@ -1,0 +1,8 @@
+adapter: postgresql
+database: onelec_production_2017
+encoding: unicode
+host: /var/run/postgresql
+# 30 - sidekiq
+# 10 - puma
+pool: 45
+checkout_timeout: 10

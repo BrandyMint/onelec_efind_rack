@@ -1,19 +1,23 @@
+require 'pry'
 require 'logger'
 require 'pg'
 require 'active_support/core_ext/string'
+require 'active_record'
 
 class EfindApp
   def initialize
     @error_logger =  Logger.new('log/app_errors.log')
-    @conn = PG.connect( dbname: 'onelec_production_2017' )
+
+    ActiveRecord::Base.establish_connection(YAML::load(File.open('config/database.yml')))
   end
 
   def call(env)
     req = Rack::Request.new(env)
     query = req.params["search"].to_s.gsub(/[^[:alnum:]\s]/, '').squish.gsub(' ', '&')
+
     data = query.present? ? fetch_results(query) : []
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data>"
-    response << data.map {|q| q["efind_xml"] }.join('')
+    response << data.join('')
     response << '</data>'
     [200, {"Content-Type" => "application/xml"}, [response]]
   end
@@ -24,9 +28,9 @@ class EfindApp
     begin
       sql = "SELECT efind_xml FROM \"product_efind_entities\" WHERE #{ts_query(query)} ORDER BY #{ts_rank(query)} desc LIMIT 20"
 
-      @conn.exec(sql)
+      ActiveRecord::Base.connection.select_values sql
     rescue => e
-      @error_logger << "query: #{query}\n message:#{e.message}\n#{e.backtrace.join("\n")}\n"
+      @error_logger << "Time:#{Time.now}\nquery: #{query}\nmessage:#{e.message}\n#{e.backtrace.join("\n")}\n"
 
       []
     end
