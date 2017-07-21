@@ -16,6 +16,7 @@ class EfindApp
     query = req.params["search"].to_s.gsub(/[^[:alnum:]\s]/, '').squish.gsub(' ', '&')
 
     data = query.present? ? fetch_results(query) : []
+    ActiveRecord::Base.clear_active_connections!
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data>"
     response << data.join('')
     response << '</data>'
