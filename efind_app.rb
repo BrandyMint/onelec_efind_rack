@@ -5,7 +5,7 @@ require 'active_support/core_ext/string'
 class EfindApp
   def initialize
     @error_logger =  Logger.new('log/app_errors.log')
-    @conn = PG.connect( dbname: 'onelec_dev' )
+    @conn = PG.connect( dbname: 'onelec_production_2017' )
   end
 
   def call(env)
