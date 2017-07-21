@@ -1,8 +1,6 @@
 require './efind_app'
-require 'pg'
-require 'active_support/core_ext/string'
 
 use Rack::Reloader
-$conn = PG.connect( dbname: 'onelec_production_2017' )
+# use Rack::CommonLogger, Logger.new('log/app.log')
 
 run EfindApp.new

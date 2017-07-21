@@ -1,4 +1,13 @@
+require 'logger'
+require 'pg'
+require 'active_support/core_ext/string'
+
 class EfindApp
+  def initialize
+    @error_logger =  Logger.new('log/app_errors.log')
+    @conn = PG.connect( dbname: 'onelec_dev' )
+  end
+
   def call(env)
     req = Rack::Request.new(env)
     query = req.params["search"].to_s.gsub(/[^[:alnum:]\s]/, '').squish.gsub(' ', '&')
@@ -12,9 +21,15 @@ class EfindApp
   private
 
   def fetch_results(query)
-    $conn.exec(
-      "SELECT efind_xml FROM \"product_efind_entities\" WHERE #{ts_query(query)} ORDER BY #{ts_rank(query)} desc LIMIT 20"
-    )
+    begin
+      sql = "SELECT efind_xml FROM \"product_efind_entities\" WHERE #{ts_query(query)} ORDER BY #{ts_rank(query)} desc LIMIT 20"
+
+      @conn.exec(sql)
+    rescue => e
+      @error_logger << "query: #{query}\n message:#{e.message}\n#{e.backtrace.join("\n")}\n"
+
+      []
+    end
   end
 
   def ts_query(query)

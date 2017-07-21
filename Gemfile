@@ -6,6 +6,7 @@ gem 'puma'
 gem 'pg'
 gem 'pry'
 
+
 group :deploy do
   gem 'capistrano', '~> 3.2', :require => false
   gem 'capistrano3-puma', require: false
