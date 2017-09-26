@@ -16,6 +16,7 @@ class EfindApp
     query = req.params["search"].to_s.gsub(/[^[:alnum:]\s]/, '').squish.gsub(' ', '&')
 
     data = query.present? ? fetch_results(query) : []
+    write_search_log(query, data.count)
     ActiveRecord::Base.clear_active_connections!
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data>"
     response << data.join('')
@@ -43,6 +44,12 @@ class EfindApp
 
   def ts_rank(query)
     "ts_rank_cd(to_tsvector('simple', name_ts), to_tsquery('simple', '#{query}'))"
+  end
+
+  def write_search_log(query, products_count)
+    return if query.blank?
+
+    ActiveRecord::Base.connection.execute("INSERT INTO search_logs (query, products_count, search_type, created_at, updated_at) VALUES ('#{query}', #{products_count}, 'efind', now(), now())")
   end
 end
 
