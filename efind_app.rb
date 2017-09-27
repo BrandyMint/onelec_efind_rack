@@ -15,7 +15,7 @@ class EfindApp
     req = Rack::Request.new(env)
     query = req.params["search"].to_s.gsub(/[^[:alnum:]\s]/, '').squish.gsub(' ', '&')
 
-    data = query.present? ? fetch_results(query) : []
+    data = (query.present? && query.length > 3) ? fetch_results(query) : []
     write_search_log(query, data.count)
     ActiveRecord::Base.clear_active_connections!
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data>"
