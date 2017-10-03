@@ -16,7 +16,21 @@ class EfindApp
     query = req.params["search"].to_s.gsub(/[^[:alnum:]\s]/, '').squish.gsub(' ', '&')
 
     data = (query.present? && query.length > 3) ? fetch_results(query) : []
-    write_search_log(query, data.count)
+
+    if req.path.include?('chipfind')
+      data = data.map do |str|
+        hash = Hash.from_xml(str)
+
+        hash["line"]["cur"] = 'RUB' if hash["line"]["cur"].present?
+        hash["line"].delete("img") if hash["line"]["img"].present?
+        hash.to_xml(skip_instruct: true, root: :line, skip_types: true, indent: 0).squish
+      end
+
+      write_search_log(query, data.count, 'chipfind')
+    else
+      write_search_log(query, data.count, 'efind')
+    end
+
     ActiveRecord::Base.clear_active_connections!
     response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data>"
     response << data.join('')
@@ -46,10 +60,10 @@ class EfindApp
     "ts_rank_cd(to_tsvector('simple', name_ts), to_tsquery('simple', '#{query}'))"
   end
 
-  def write_search_log(query, products_count)
+  def write_search_log(query, products_count, type)
     return if query.blank?
 
-    ActiveRecord::Base.connection.execute("INSERT INTO search_logs (query, products_count, search_type, created_at, updated_at) VALUES ('#{query}', #{products_count}, 'efind', now(), now())")
+    ActiveRecord::Base.connection.execute("INSERT INTO search_logs (query, products_count, search_type, created_at, updated_at) VALUES ('#{query}', #{products_count}, '#{type}', now(), now())")
   end
 end
 
