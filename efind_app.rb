@@ -19,11 +19,11 @@ class EfindApp
 
     if req.path.include?('chipfind')
       data = data.map do |str|
-        hash = Hash.from_xml(str)
+        hash = Hash.from_xml(str)['line']
 
-        hash["line"]["cur"] = 'RUB' if hash["line"]["cur"].present?
-        hash["line"].delete("img") if hash["line"]["img"].present?
-        hash.to_xml(skip_instruct: true, root: :line, skip_types: true, indent: 0).squish
+        hash["cur"] = 'RUB' if hash["cur"].present?
+        hash.delete("img") if hash["img"].present?
+        hash.to_xml(skip_instruct: true, skip_types: true, indent: 0, root: :line).squish
       end
 
       write_search_log(query, data.count, 'chipfind')
