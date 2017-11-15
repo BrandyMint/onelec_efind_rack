@@ -22,7 +22,12 @@ class EfindApp
         hash = Hash.from_xml(str)['line']
 
         hash["cur"] = 'RUB' if hash["cur"].present?
-        hash["img"].gsub!('https', 'http') if hash["img"].present?
+
+        if hash["img"].present?
+          hash["img"].gsub!('https', 'http')
+          hash["img"].gsub!('efind', 'chipfind')
+        end
+
         hash.to_xml(skip_instruct: true, skip_types: true, indent: 0, root: :line).squish
       end
 
