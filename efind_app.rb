@@ -31,9 +31,9 @@ class EfindApp
         hash.to_xml(skip_instruct: true, skip_types: true, indent: 0, root: :line).squish
       end
 
-      write_search_log(query, data.count, 'chipfind')
+      # write_search_log(query, data.count, 'chipfind')
     else
-      write_search_log(query, data.count, 'efind')
+      # write_search_log(query, data.count, 'efind')
     end
 
     ActiveRecord::Base.clear_active_connections!
