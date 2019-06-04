@@ -6,7 +6,7 @@ require 'active_record'
 
 class EfindApp
   def initialize
-    @error_logger =  Logger.new('log/app_errors.log')
+    @error_logger =  Logger.new('log/application.log')
 
     ActiveRecord::Base.establish_connection(YAML::load(File.open('config/database.yml')))
   end

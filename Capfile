@@ -7,7 +7,7 @@ require "capistrano/setup"
 
 # Include default deployment tasks
 require "capistrano/deploy"
-
+require 'capistrano/dotenv'
 # Load the SCM plugin appropriate to your project:
 #
 # require "capistrano/scm/hg"
