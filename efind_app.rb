@@ -1,4 +1,3 @@
-require 'pry'
 require 'logger'
 require 'pg'
 require 'active_support/core_ext/string'
