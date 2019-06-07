@@ -1,10 +1,9 @@
 GIT
   remote: git://github.com/capistrano/bundler.git
-  revision: 9c45690eda896d8d3abbd43ed3c3b4aced31c581
+  revision: 5ce0b66b5c0c820e7043f7b4b9aaa862c8bb4523
   specs:
-    capistrano-bundler (1.2.0)
+    capistrano-bundler (1.5.0)
       capistrano (~> 3.1)
-      sshkit (~> 1.2)
 
 GEM
   remote: https://rubygems.org/
