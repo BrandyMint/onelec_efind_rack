@@ -2,6 +2,7 @@ require 'logger'
 require 'pg'
 require 'active_support/core_ext/string'
 require 'active_record'
+# require 'pry'
 
 class EfindApp
   def initialize
@@ -12,9 +13,12 @@ class EfindApp
 
   def call(env)
     req = Rack::Request.new(env)
+
+    version = req.path.split('/').include?('v2') ? 'v2' : 'v1'
+
     query = req.params["search"].to_s.gsub(/[^[:alnum:]\s]/, '').squish.gsub(' ', '&')
 
-    data = (query.present? && query.length > 3) ? fetch_results(query) : []
+    data = (query.present? && query.length > 3) ? fetch_results(query, version) : []
 
     if req.path.include?('chipfind')
       data = data.map do |str|
@@ -36,17 +40,22 @@ class EfindApp
     end
 
     ActiveRecord::Base.clear_active_connections!
-    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data>"
+
+    response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    response << (version == 'v2' ? '<data version="2.0">' : '<data>')
     response << data.join('')
     response << '</data>'
+
     [200, {"Content-Type" => "application/xml"}, [response]]
   end
 
   private
 
-  def fetch_results(query)
+  def fetch_results(query, version)
     begin
-      sql = "SELECT efind_xml FROM \"product_efind_entities\" WHERE #{ts_query(query)} ORDER BY #{ts_rank(query)} desc LIMIT 20"
+      table = version == 'v2' ? 'product_efind_entities' : 'product_efind_v2_entities'
+
+      sql = "SELECT efind_xml FROM \"#{table}\" WHERE #{ts_query(query, table)} ORDER BY #{ts_rank(query)} desc LIMIT 20"
 
       ActiveRecord::Base.connection.select_values sql
     rescue => e
@@ -56,8 +65,9 @@ class EfindApp
     end
   end
 
-  def ts_query(query)
-    "(to_tsvector('simple', product_efind_entities.name_ts) @@ to_tsquery('simple', '#{query}:*'))"
+
+  def ts_query(query, table)
+    "(to_tsvector('simple', #{table}.name_ts) @@ to_tsquery('simple', '#{query}:*'))"
   end
 
   def ts_rank(query)
