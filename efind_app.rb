@@ -53,7 +53,7 @@ class EfindApp
 
   def fetch_results(query, version)
     begin
-      table = version == 'v2' ? 'product_efind_entities' : 'product_efind_v2_entities'
+      table = version == 'v2' ? 'product_efind_v2_entities' : 'product_efind_entities'
 
       sql = "SELECT efind_xml FROM \"#{table}\" WHERE #{ts_query(query, table)} ORDER BY #{ts_rank(query)} desc LIMIT 20"
 
