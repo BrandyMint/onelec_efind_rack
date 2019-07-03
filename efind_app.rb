@@ -1,6 +1,6 @@
 require 'logger'
 require 'pg'
-require 'active_support'
+require 'active_support/all'
 require 'active_record'
 # require 'pry'
 
