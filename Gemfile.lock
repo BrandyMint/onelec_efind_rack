@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/capistrano/bundler.git
-  revision: 912efa97f64064a55bc7bafccb4657f062658db5
+  revision: 958b276acfd8989b862cdca026f032f47f6b3863
   specs:
-    capistrano-bundler (1.5.0)
+    capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
 
 GEM
@@ -54,7 +54,7 @@ GEM
       nio4r (~> 2.0)
     rack (2.0.7)
     rake (12.3.2)
-    sshkit (1.18.2)
+    sshkit (1.19.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     thread_safe (0.3.6)
