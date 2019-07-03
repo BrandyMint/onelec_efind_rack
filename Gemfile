@@ -6,6 +6,7 @@ gem 'puma'
 gem 'pg'
 gem 'activerecord'
 gem 'bugsnag'
+gem 'builder'
 
 group :development do
   gem 'pry'
