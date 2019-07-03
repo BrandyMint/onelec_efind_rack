@@ -1,7 +1,6 @@
 require 'logger'
 require 'pg'
-require 'active_support/core_ext/string'
-require 'active_support/core_ext/hash'
+require 'active_support/core_ext'
 require 'active_record'
 # require 'pry'
 
