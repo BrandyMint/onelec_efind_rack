@@ -7,7 +7,8 @@ require 'active_record'
 
 class EfindApp
   def initialize
-    @error_logger =  Logger.new('log/application.log')
+    @logger =  Logger.new('log/application.log')
+    @logger.info "Start app"
 
     ActiveRecord::Base.establish_connection(YAML::load(File.open('config/database.yml')))
   end
@@ -35,9 +36,9 @@ class EfindApp
         hash.to_xml(skip_instruct: true, skip_types: true, indent: 0, root: :line).squish
       end
 
-      # write_search_log(query, data.count, 'chipfind')
+      log_search(query, data.count, 'chipfind')
     else
-      # write_search_log(query, data.count, 'efind')
+      log_search(query, data.count, 'efind')
     end
 
     ActiveRecord::Base.clear_active_connections!
@@ -53,19 +54,16 @@ class EfindApp
   private
 
   def fetch_results(query, version)
-    begin
-      table = version == 'v2' ? 'product_efind_v2_entities' : 'product_efind_entities'
+    table = version == 'v2' ? 'product_efind_v2_entities' : 'product_efind_entities'
 
-      sql = "SELECT efind_xml FROM \"#{table}\" WHERE #{ts_query(query, table)} ORDER BY #{ts_rank(query)} desc LIMIT 20"
+    sql = "SELECT efind_xml FROM \"#{table}\" WHERE #{ts_query(query, table)} ORDER BY #{ts_rank(query)} desc LIMIT 20"
 
-      ActiveRecord::Base.connection.select_values sql
-    rescue => e
-      @error_logger << "Time:#{Time.now}\nquery: #{query}\nmessage:#{e.message}\n#{e.backtrace.join("\n")}\n"
+    ActiveRecord::Base.connection.select_values sql
+  rescue => e
+    @logger.error "Time:#{Time.now}\nquery: #{query}\nmessage:#{e.message}\n#{e.backtrace.join("\n")}\n"
 
-      []
-    end
+    []
   end
-
 
   def ts_query(query, table)
     "(to_tsvector('simple', #{table}.name_ts) @@ to_tsquery('simple', '#{query}:*'))"
@@ -75,10 +73,11 @@ class EfindApp
     "ts_rank_cd(to_tsvector('simple', name_ts), to_tsquery('simple', '#{query}'))"
   end
 
-  def write_search_log(query, products_count, type)
+  def log_search(query, products_count, type)
     return if query.blank?
 
-    ActiveRecord::Base.connection.execute("INSERT INTO search_logs (query, products_count, search_type, created_at, updated_at) VALUES ('#{query}', #{products_count}, '#{type}', now(), now())")
+    @logger.info "query=#{query};products_count=#{products_count};type=#{type}"
+    # ActiveRecord::Base.connection.execute("INSERT INTO search_logs (query, products_count, search_type, created_at, updated_at) VALUES ('#{query}', #{products_count}, '#{type}', now(), now())")
   end
 end
 
