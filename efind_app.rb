@@ -53,6 +53,7 @@ class EfindApp
 
   private
 
+  # chipfind и einfo на старой спецификации
   def fetch_results(query, version)
     table = version == 'v2' ? 'product_efind_v2_entities' : 'product_efind_entities'
 
