@@ -25,7 +25,7 @@ GEM
     bugsnag (6.13.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
-    capistrano (3.12.1)
+    capistrano (3.13.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -70,7 +70,7 @@ DEPENDENCIES
   activesupport
   bugsnag
   builder
-  capistrano (~> 3.12)
+  capistrano (~> 3.13)
   capistrano-bundler!
   capistrano-rbenv
   capistrano3-puma
