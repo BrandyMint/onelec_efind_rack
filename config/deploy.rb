@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.11.2"
+lock "3.13"
 
 set :application, "onelec_efind_rack"
 set :repo_url, "git@github.com:BrandyMint/onelec_efind_rack.git"
