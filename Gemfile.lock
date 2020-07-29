@@ -22,7 +22,7 @@ GEM
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (9.0.0)
-    bugsnag (6.14.0)
+    bugsnag (6.15.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
     capistrano (3.14.1)
