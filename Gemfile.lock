@@ -25,7 +25,7 @@ GEM
     bugsnag (6.18.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
-    capistrano (3.14.1)
+    capistrano (3.15.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -39,7 +39,7 @@ GEM
       puma (~> 4.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.7)
-    i18n (1.8.5)
+    i18n (1.8.7)
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
     minitest (5.14.2)
@@ -54,8 +54,8 @@ GEM
     puma (4.3.7)
       nio4r (~> 2.0)
     rack (2.2.3)
-    rake (13.0.1)
-    sshkit (1.21.0)
+    rake (13.0.3)
+    sshkit (1.21.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     thread_safe (0.3.6)
@@ -70,7 +70,7 @@ DEPENDENCIES
   activesupport
   bugsnag
   builder
-  capistrano (~> 3.14)
+  capistrano (~> 3.15)
   capistrano-bundler!
   capistrano-rbenv
   capistrano3-puma

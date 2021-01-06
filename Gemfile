@@ -13,7 +13,7 @@ group :development do
 end
 
 group :deploy do
-  gem 'capistrano', '~> 3.14', require: false
+  gem 'capistrano', '~> 3.15', require: false
   gem 'capistrano3-puma', require: false
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-bundler', github: 'capistrano/bundler', require: false
